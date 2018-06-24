@@ -3,23 +3,15 @@ package me.alexeykomov.server;
 import com.vk.api.sdk.client.VkApiClient;
 import com.vk.api.sdk.client.actors.UserActor;
 import com.vk.api.sdk.objects.UserAuthResponse;
-import com.vk.api.sdk.objects.users.UserXtrCounters;
 import me.alexeykomov.AppProps;
 import me.alexeykomov.TaskRunner;
 import me.alexeykomov.db.Storage;
 import org.eclipse.jetty.server.Request;
 import org.eclipse.jetty.server.handler.AbstractHandler;
-
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.List;
 
-
-/**
- * Created by Anton Tsivarev on 15.10.16.
- */
 public class RequestHandler extends AbstractHandler {
 
   private final String clientSecret;
@@ -37,11 +29,14 @@ public class RequestHandler extends AbstractHandler {
   }
 
   @Override
-  public void handle(String target, Request baseRequest, HttpServletRequest request, HttpServletResponse response) throws IOException {
+  public void handle(String target, Request baseRequest, HttpServletRequest
+      request, HttpServletResponse response) throws IOException {
     switch (target) {
       case "/callback":
         try {
-          UserAuthResponse authResponse = vk.oauth().userAuthorizationCodeFlow(clientId, clientSecret, getRedirectUri(), baseRequest.getParameter("code")).execute();
+          UserAuthResponse authResponse = vk.oauth().userAuthorizationCodeFlow(
+              clientId, clientSecret, this.appProps.getRedirectUri(),
+              baseRequest.getParameter("code")).execute();
           UserActor actor = new UserActor(authResponse.getUserId(), authResponse.getAccessToken());
 
           TaskRunner taskRunner = new TaskRunner(vk, actor, storage);

@@ -48,15 +48,15 @@ public class AppProps {
   private String serverHost;
   private String serverProtocol;
 
-  public String getServerPort() {
+  String getServerPort() {
     return serverPort;
   }
 
-  public String getServerHost() {
+  String getServerHost() {
     return serverHost;
   }
 
-  public String getServerProtocol() {
+  String getServerProtocol() {
     return serverProtocol;
   }
 
