@@ -1,0 +1,28 @@
+group 'me.alexeykomov'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+
+version = 1.0
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+sourceSets {
+    main.java.srcDir "src/main/java"
+    main.resources.srcDir "src/res/java"
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+
+    compile 'com.vk.api:sdk:0.5.12'
+    compile 'org.mybatis:mybatis:3.4.6'
+    compile group: 'org.eclipse.jetty', name: 'jetty-server', version: '9.4.11.v20180605'
+    compile group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.11.0'
+    compile 'org.postgresql:postgresql:42.2.2'
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: '2.9.6'
+    compile group: 'com.google.guava', name: 'guava', version: '25.1-jre'
+}
