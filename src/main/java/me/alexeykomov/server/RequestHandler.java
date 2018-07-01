@@ -63,6 +63,6 @@ public class RequestHandler extends AbstractHandler {
 
   private String getOAuthUrl() {
     return "https://oauth.vk.com/authorize?client_id=" + clientId +
-        "&display=page&redirect_uri=" + this.appProps.getRedirectUri() + "&scope=groups&response_type=code";
+        "&display=page&redirect_uri=" + this.appProps.getRedirectUri() + "&scope=friends&response_type=code";
   }
 }
